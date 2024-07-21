@@ -25,7 +25,7 @@ export class TelegramBotService implements OnModuleInit {
 				const webAppUrl = `${this.configService.get('WEB_APP_URL')}?data=${encodeURIComponent(userDataString)}`;
 
 				await ctx.reply('Привет! Я уже работаю.', Markup.inlineKeyboard([
-					Markup.button.url('Открыть веб-приложение', webAppUrl),
+					Markup.button.webApp('Открыть веб-приложение', webAppUrl),
 				]));
 			});
 
