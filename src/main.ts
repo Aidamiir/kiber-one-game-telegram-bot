@@ -1,17 +1,16 @@
-import 'module-alias/register';
-import { NestFactory } from '@nestjs/core';
-import * as dotenv from 'dotenv';
+import {NestFactory} from '@nestjs/core';
+import {ConfigService} from "@nestjs/config";
+import {AppModule} from "@/app.module";
 
-import { AppModule } from './app.module';
-
-dotenv.config();
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
-	app.setGlobalPrefix('api');app.enableCors({
-		origin: ['http://localhost:3000', 'http://localhost:4173', 'http://87.228.17.223:3000'],
-	});
+	const configService = app.get(ConfigService);
+	const port = configService.get<number>('PORT', 6060);
 
-	await app.listen(6060);
+	app.setGlobalPrefix('telegram-api');
+
+	await app.listen(port);
+	console.log(`Application is running on: http://localhost:${port}`);
 }
 
 bootstrap();

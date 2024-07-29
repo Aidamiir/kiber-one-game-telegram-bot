@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-
-import { TelegramBotModule } from '@/modules/telegram-bot.module';
+import { TelegramBotModule } from '@/telegram-bot/telegram-bot.module';
 
 @Module({
 	imports: [
